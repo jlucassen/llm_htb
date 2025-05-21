@@ -1,3 +1,6 @@
 .env
 chromedriver-mac-arm64/
 .DS_Store
+logs/
+__pycache__/
+.compose.yaml

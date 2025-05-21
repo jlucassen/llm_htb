@@ -14,3 +14,4 @@
 - finished Q&A for guided mode I think
 - now on to inspect stuff
     - got a custom dataset working
+    - got a bash environment working
