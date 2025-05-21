@@ -4,3 +4,4 @@ chromedriver-mac-arm64/
 logs/
 __pycache__/
 .compose.yaml
+*.ovpn
