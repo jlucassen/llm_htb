@@ -13,3 +13,4 @@
 ## 5/21/25
 - finished Q&A for guided mode I think
 - now on to inspect stuff
+    - got a custom dataset working
