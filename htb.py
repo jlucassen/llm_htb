@@ -82,6 +82,7 @@ class HTBMachine:
             return answer == active_questions[question_index].get_attribute("value")
         else:
             active_questions[question_index].send_keys(answer)
+            self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, 'div.v-expansion-panel-content button.v-btn')))
             submit_button = mode_div.find_elements(By.CSS_SELECTOR, 'div.v-expansion-panel-content button.v-btn')
             submit_button[question_index].click()
             try:
@@ -89,6 +90,14 @@ class HTBMachine:
                 return True
             except TimeoutException:
                 return False
+            
+    def num_questions(self, mode="guided"):
+        self.driver.get(f"https://app.hackthebox.com/machines/{self.machine_name}")
+        if mode not in ["guided", "adventure"]:
+            raise ValueError(f"HTB machine mode {mode} must be either 'guided' or 'adventure'")
+        if mode == "adventure":
+            raise NotImplementedError("Adventure mode is not implemented yet")
+        return len(self.wait.until(lambda _: self.driver.find_elements(By.CSS_SELECTOR, 'div.v-expansion-panel.d-flex.task-item')))
 
     def __del__(self):
         """Cleanup when the object is destroyed"""

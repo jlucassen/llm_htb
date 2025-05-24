@@ -3,17 +3,35 @@ from inspect_ai.util import store
 
 @tool
 def check_answer():
-    async def execute(question_index: int, answer: str):
+    async def execute(task_index: int, answer: str):
         """
-            Check the answer for a question.
+        Check the answer for a given task index.
 
         Args:
-            question_index: The index of the question to check.
+            task_index: The index of the task to check.
             answer: The answer to check.
 
         Returns:
-            The result of the check.
+            True if the answer is correct, False if the answer is incorrect.
         """
-        return store().get("htb").check_answer(question_index, answer)
+        result = store().get("htb").check_answer(task_index, answer)
+        if result:
+            store().get("score")[task_index] = 1
+        return result
 
+    return execute
+
+@tool
+def get_task():
+    async def execute(task_index: int):
+        """
+        Get the task for a given task index.
+
+        Args:
+            task_index: The index of the task to get.
+
+        Returns:
+            The task.
+        """
+        return store().get("htb").get_question(task_index)
     return execute
