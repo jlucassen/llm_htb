@@ -15,3 +15,7 @@
 - now on to inspect stuff
     - got a custom dataset working
     - got a bash environment working
+    - connected to htb inside docker
+
+## 5/23/25
+- hopefully I'm not abusing the store too much but it's so useful
